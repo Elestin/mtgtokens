@@ -26,6 +26,8 @@ function displayResults(tokens) {
     return;
   }
   tokens.slice(0, 10).forEach((token) => {
+    if (!token.image_uris) return; // Add this line to skip tokens without image_uris
+
     const listItem = document.createElement("li");
     listItem.textContent = `${token.name} (${token.power}/${token.toughness})`;
     listItem.dataset.imageUrl = token.image_uris.normal;
@@ -33,6 +35,7 @@ function displayResults(tokens) {
   });
   dropdown.style.display = "block";
 }
+
 
 resultsList.addEventListener("click", (event) => {
   if (event.target.tagName.toLowerCase() !== 'li') return;
