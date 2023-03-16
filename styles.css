@@ -92,7 +92,7 @@ input {
 
 .token-container .tap-btn {
   bottom: 4px;
-  left: 4px;
+  right: 4px;
 }
 
 .token-container img.tapped {
