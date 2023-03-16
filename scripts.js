@@ -35,41 +35,52 @@ document.addEventListener("DOMContentLoaded", function () {
             });
     });
 
-    function addToGallery(token) {
-        dropdownContent.style.display = "none";
+function addToGallery(token) {
+    dropdownContent.style.display = "none";
 
-        const container = document.createElement("div");
-        container.className = "token-container";
+    const container = document.createElement("div");
+    container.className = "token-container";
 
-        const img = document.createElement("img");
-        img.src = token.image_uris.normal;
-        img.alt = `${token.name} (${token.power}/${token.toughness})`;
+    // Create options button
+    const optionsButton = document.createElement("button");
+    optionsButton.textContent = "Options";
+    optionsButton.className = "options-btn";
+    optionsButton.style.position = "absolute";
+    optionsButton.style.bottom = "4px";
+    optionsButton.style.left = "4px";
 
-        const removeButton = document.createElement("button");
-        removeButton.textContent = "Remove";
-        removeButton.className = "remove-btn";
-        removeButton.addEventListener("click", function () {
-            gallery.removeChild(container);
-        });
+    // Create options menu
+    const optionsMenu = document.createElement("div");
+    optionsMenu.className = "options-menu";
+    optionsMenu.style.display = "none";
 
-        const duplicateButton = document.createElement("button");
-        duplicateButton.textContent = "Duplicate";
-        duplicateButton.className = "duplicate-btn";
-        duplicateButton.addEventListener("click", function () {
-            addToGallery(token);
-        });
+    // Add Keyword button
+    const addKeywordButton = document.createElement("button");
+    addKeywordButton.textContent = "Add Keyword";
+    addKeywordButton.className = "add-keyword-btn";
+    // Implement the functionality for adding keywords here
 
-        const tapButton = document.createElement("button");
-        tapButton.textContent = "Tap";
-        tapButton.className = "tap-btn";
-        tapButton.addEventListener("click", function () {
-            img.classList.toggle("tapped");
-        });
+    // Add Counter button
+    const addCounterButton = document.createElement("button");
+    addCounterButton.textContent = "Add Counter";
+    addCounterButton.className = "add-counter-btn";
+    // Implement the functionality for adding counters here
 
-        container.appendChild(img);
-        container.appendChild(removeButton);
-        container.appendChild(tapButton);
-        container.appendChild(duplicateButton);        
-        gallery.appendChild(container);
-    }
+    optionsMenu.appendChild(addKeywordButton);
+    optionsMenu.appendChild(addCounterButton);
+
+    // Toggle options menu on options button click
+    optionsButton.addEventListener("click", function () {
+        optionsMenu.style.display = optionsMenu.style.display === "none" ? "block" : "none";
+    });
+
+    container.appendChild(img);
+    container.appendChild(removeButton);
+    container.appendChild(duplicateButton);
+    container.appendChild(tapButton);
+    container.appendChild(optionsButton);
+    container.appendChild(optionsMenu);
+    gallery.appendChild(container);
+}
+
 });
