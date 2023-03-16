@@ -30,9 +30,13 @@ document.addEventListener("DOMContentLoaded", function () {
             });
     });
 
-function addToGallery(token) {
-  const container = document.createElement("div");
-  container.className = "token-container";
+  function addToGallery(token) {
+    dropdownContent.style.display = "none";
+
+    const container = document.createElement("div");
+    container.className = "token-container";
+   
+}
 
   const img = document.createElement("img");
   img.src = token.image_uris.normal;
