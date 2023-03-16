@@ -41,7 +41,6 @@ function addToGallery(token) {
     const container = document.createElement("div");
     container.className = "token-container";
 
-    // Add the img element creation back inside addToGallery
     const img = document.createElement("img");
     img.src = token.image_uris.normal;
     img.alt = `${token.name} (${token.power}/${token.toughness})`;
@@ -50,9 +49,10 @@ function addToGallery(token) {
     const optionsButton = document.createElement("button");
     optionsButton.textContent = "Options";
     optionsButton.className = "options-btn";
-    optionsButton.style.position = "absolute";
-    optionsButton.style.bottom = "4px";
-    optionsButton.style.left = "4px";
+    optionsButton.addEventListener("click", function (event) {
+        event.stopPropagation(); // Prevent click event from propagating to document body
+        toggleOptionsMenu(container);
+    });
 
     // Create options menu
     const optionsMenu = document.createElement("div");
@@ -83,8 +83,7 @@ function addToGallery(token) {
     container.appendChild(removeButton);
     container.appendChild(duplicateButton);
     container.appendChild(tapButton);
-    container.appendChild(optionsButton);
-    container.appendChild(optionsMenu);
+    container.appendChild(optionsButton); // Append the options button
     gallery.appendChild(container);
 }
 
