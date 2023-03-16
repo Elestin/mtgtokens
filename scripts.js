@@ -26,15 +26,15 @@ function displayResults(tokens) {
     return;
   }
   tokens.slice(0, 10).forEach((token) => {
-    const option = document.createElement("option");
-    option.value = `${token.name} (${token.power}/${token.toughness})`;
-    option.dataset.imageUrl = token.image_uris.normal;
-    resultsList.appendChild(option);
+    const listItem = document.createElement("li");
+    listItem.textContent = `${token.name} (${token.power}/${token.toughness})`;
+    listItem.dataset.imageUrl = token.image_uris.normal;
+    resultsList.appendChild(listItem);
   });
   dropdown.style.display = "block";
 }
 
-resultsList.addEventListener("change", (event) => {
+resultsList.addEventListener("click", (event) => {
   addTokenToGallery(event.target.selectedOptions[0].dataset.imageUrl);
   dropdown.style.display = "none";
 });
