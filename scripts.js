@@ -1,31 +1,30 @@
-$(document).ready(function () {
-    $("#search-input").on("input", function () {
-        const query = $(this).val();
+const searchInput = document.getElementById('search-input');
+const searchResults = document.getElementById('search-results');
+const baseUrl = 'https://api.scryfall.com';
 
-        if (query.length >= 3) {
-            searchTokens(query);
-        } else {
-            $("#token-container").empty();
-        }
-    });
+searchInput.addEventListener('input', (e) => {
+    const query = e.target.value;
+    if (query.length >= 3) {
+        searchTokens(query);
+    } else {
+        searchResults.style.display = 'none';
+    }
 });
 
 function searchTokens(query) {
-    $.getJSON(`https://api.scryfall.com/cards/search?q=t:token+${query}`, function (data) {
-        displayTokens(data.data);
-    });
+    fetch(`${baseUrl}/cards/search?q=t:token+${query}`)
+        .then((response) => response.json())
+        .then((data) => {
+            displayResults(data.data);
+        });
 }
 
-function displayTokens(tokens) {
-    $("#token-container").empty();
-
-    tokens.forEach(function (token) {
-        const tokenItem = $("<div class='token-item'></div>");
-        const tokenImage = $("<img class='token-image' src='" + token.image_uris.small + "'>");
-        const tokenName = $("<p class='token-name'>" + token.name + "</p>");
-
-        tokenItem.append(tokenImage);
-        tokenItem.append(tokenName);
-        $("#token-container").append(tokenItem);
+function displayResults(tokens) {
+    searchResults.innerHTML = '';
+    tokens.forEach((token) => {
+        const li = document.createElement('li');
+        li.textContent = `${token.name} (${token.power}/${token.toughness})`;
+        searchResults.appendChild(li);
     });
+    searchResults.style.display = 'block';
 }
