@@ -1,12 +1,15 @@
-const searchForm = document.getElementById("searchForm");
-const searchInput = document.getElementById("searchInput");
+const searchInput = document.getElementById("search");
 const resultsList = document.getElementById("resultsList");
 const dropdown = document.querySelector(".dropdown-content");
 const gallery = document.getElementById("gallery");
 
-searchForm.addEventListener("submit", (event) => {
-  event.preventDefault();
-  searchTokens(searchInput.value);
+searchInput.addEventListener("input", (event) => {
+  const query = event.target.value.trim();
+  if (query.length >= 2) {
+    searchTokens(query);
+  } else {
+    dropdown.style.display = "none";
+  }
 });
 
 async function searchTokens(query) {
