@@ -43,6 +43,7 @@ input {
 .dropdown-content li:hover {
     background-color: #f1f1f1;
 }
+
 .gallery {
     display: flex;
     flex-wrap: wrap;
@@ -98,11 +99,3 @@ input {
 .token-container img.tapped {
   transform: rotate(90deg);
 }
-.token-container button {
-  display: none;
-}
-
-.token-container:hover button {
-  display: block;
-}
-
