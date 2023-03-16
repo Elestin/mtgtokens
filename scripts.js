@@ -36,10 +36,15 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 function addToGallery(token) {
+<<<<<<< HEAD
     dropdownContent.style.display = "none";
 
     const container = document.createElement("div");
     container.className = "token-container";
+=======
+  const container = document.createElement("div");
+  container.className = "token-container";
+>>>>>>> parent of 42a5a1d (Hiding dropdown)
 
     // Add the img element creation back inside addToGallery
     const img = document.createElement("img");
