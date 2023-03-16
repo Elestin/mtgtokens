@@ -68,8 +68,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
         container.appendChild(img);
         container.appendChild(removeButton);
-        container.appendChild(duplicateButton);
         container.appendChild(tapButton);
+        container.appendChild(duplicateButton);        
         gallery.appendChild(container);
     }
 });
