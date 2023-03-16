@@ -1,101 +1,40 @@
 body {
     font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
 h1 {
     text-align: center;
-}
-
-input {
-    display: block;
-    width: 100%;
-    max-width: 300px;
-    margin: 0 auto;
-    padding: 10px;
-}
-
-.dropdown {
-    position: relative;
-    width: 100%;
-    max-width: 300px;
-    margin: 0 auto;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    width: 100%;
-    background-color: #f9f9f9;
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-    z-index: 1;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    max-height: 300px;
-    overflow-y: auto;
-}
-
-.dropdown-content li {
-    padding: 10px;
-    cursor: pointer;
-}
-
-.dropdown-content li:hover {
-    background-color: #f1f1f1;
-}
-
-.gallery {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
     margin-top: 20px;
 }
 
-.gallery img {
-    width: 200px;
-    height: auto;
-    object-fit: cover;
-    box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.1);
-}
-.token-container {
-  position: relative;
-  display: inline-block;
-  margin: 10px;
+#search-input {
+    display: block;
+    width: 80%;
+    margin: 20px auto;
+    padding: 10px;
+    font-size: 18px;
 }
 
-.token-container img {
-  width: 200px;
-  height: auto;
-  object-fit: cover;
-  box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.1);
+#token-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
-.token-container button {
-  position: absolute;
-  background-color: white;
-  border: none;
-  font-size: 12px;
-  padding: 4px 8px;
-  border-radius: 4px;
-  cursor: pointer;
+.token-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
 }
 
-.token-container .remove-btn {
-  top: 4px;
-  right: 4px;
+.token-image {
+    max-width: 100px;
+    max-height: 100px;
 }
 
-.token-container .duplicate-btn {
-  top: 4px;
-  left: 4px;
-}
-
-.token-container .tap-btn {
-  bottom: 4px;
-  right: 4px;
-}
-
-.token-container img.tapped {
-  transform: rotate(90deg);
+.token-name {
+    text-align: center;
 }
