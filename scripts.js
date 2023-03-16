@@ -30,10 +30,40 @@ document.addEventListener("DOMContentLoaded", function () {
             });
     });
 
-    function addToGallery(token) {
-        const img = document.createElement("img");
-        img.src = token.image_uris.normal;
-        img.alt = `${token.name} (${token.power}/${token.toughness})`;
-        gallery.appendChild(img);
-    }
+function addToGallery(token) {
+  const container = document.createElement("div");
+  container.className = "token-container";
+
+  const img = document.createElement("img");
+  img.src = token.image_uris.normal;
+  img.alt = `${token.name} (${token.power}/${token.toughness})`;
+
+  const removeButton = document.createElement("button");
+  removeButton.textContent = "Remove";
+  removeButton.className = "remove-btn";
+  removeButton.addEventListener("click", function () {
+    gallery.removeChild(container);
+  });
+
+  const duplicateButton = document.createElement("button");
+  duplicateButton.textContent = "Duplicate";
+  duplicateButton.className = "duplicate-btn";
+  duplicateButton.addEventListener("click", function () {
+    addToGallery(token);
+  });
+
+  const tapButton = document.createElement("button");
+  tapButton.textContent = "Tap";
+  tapButton.className = "tap-btn";
+  tapButton.addEventListener("click", function () {
+    img.classList.toggle("tapped");
+  });
+
+  container.appendChild(img);
+  container.appendChild(removeButton);
+  container.appendChild(duplicateButton);
+  container.appendChild(tapButton);
+  gallery.appendChild(container);
+}
+
 });
