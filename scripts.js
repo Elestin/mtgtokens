@@ -1,7 +1,7 @@
 const searchForm = document.getElementById("searchForm");
 const searchInput = document.getElementById("searchInput");
 const resultsList = document.getElementById("resultsList");
-const dropdown = document.querySelector(".dropdown-content");
+const dropdown = document.querySelector(".dropdown");
 const gallery = document.getElementById("gallery");
 
 searchForm.addEventListener("submit", (event) => {
@@ -24,12 +24,12 @@ function displayResults(tokens) {
     option.dataset.imageUrl = token.image_uris.normal;
     resultsList.appendChild(option);
   });
-  dropdown.style.display = "block";
+  dropdown.classList.add("show");
 }
 
 resultsList.addEventListener("change", (event) => {
   addTokenToGallery(event.target.selectedOptions[0].dataset.imageUrl);
-  dropdown.style.display = "none";
+  dropdown.classList.remove("show");
 });
 
 function addTokenToGallery(imageUrl) {
