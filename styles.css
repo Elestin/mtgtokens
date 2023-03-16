@@ -43,3 +43,18 @@ input {
 .dropdown-content li:hover {
     background-color: #f1f1f1;
 }
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.gallery img {
+    width: 200px;
+    height: auto;
+    object-fit: cover;
+    box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.1);
+}
+
