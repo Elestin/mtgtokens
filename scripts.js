@@ -1,86 +1,62 @@
-document.getElementById('searchForm').addEventListener('submit', async (event) => {
+const searchForm = document.getElementById("searchForm");
+const searchInput = document.getElementById("searchInput");
+const resultsList = document.getElementById("resultsList");
+const gallery = document.getElementById("gallery");
+
+searchForm.addEventListener("submit", (event) => {
   event.preventDefault();
-
-  const query = document.getElementById('searchInput').value;
-  const response = await fetch(`https://api.scryfall.com/cards/search?q=t:token+${query}`);
-  const data = await response.json();
-  const tokens = data.data;
-
-  updateDropdown(tokens);
+  searchTokens(searchInput.value);
 });
 
-function updateDropdown(tokens) {
-  const dropdown = document.getElementById('tokenDropdown');
-  dropdown.innerHTML = '';
+async function searchTokens(query) {
+  const response = await fetch(`https://api.scryfall.com/cards/search?order=name&q=t%3Atoken+${query}`);
+  const data = await response.json();
 
+  displayResults(data.data);
+}
+
+function displayResults(tokens) {
+  resultsList.innerHTML = "";
   tokens.slice(0, 10).forEach((token) => {
-    const option = document.createElement('option');
-    option.value = token.id;
-    option.textContent = `${token.name} (${token.power}/${token.toughness})`;
-    option.tokenData = token;
-    dropdown.appendChild(option);
+    const option = document.createElement("option");
+    option.value = `${token.name} (${token.power}/${token.toughness})`;
+    option.dataset.imageUrl = token.image_uris.normal;
+    resultsList.appendChild(option);
   });
 }
 
-document.getElementById('tokenDropdown').addEventListener('change', function () {
-  const selectedOption = this.options[this.selectedIndex];
-  const token = selectedOption.tokenData;
-
-  if (token) {
-    const tokenElement = createTokenElement(token);
-    const gallery = document.getElementById('gallery');
-    gallery.appendChild(tokenElement);
-  }
+resultsList.addEventListener("change", (event) => {
+  addTokenToGallery(event.target.selectedOptions[0].dataset.imageUrl);
 });
 
-function createTokenElement(token) {
-  const tokenElement = document.createElement('div');
-  tokenElement.classList.add('token');
+function addTokenToGallery(imageUrl) {
+  const tokenDiv = document.createElement("div");
+  tokenDiv.classList.add("token");
 
-  const tokenImage = document.createElement('img');
-  tokenImage.src = token.image_url;
-  tokenElement.appendChild(tokenImage);
+  const tokenImage = document.createElement("img");
+  tokenImage.src = imageUrl;
+  tokenDiv.appendChild(tokenImage);
 
-  const removeButton = document.createElement('button');
-  removeButton.textContent = 'Remove';
-  removeButton.addEventListener('click', () => {
-    tokenElement.remove();
+  const removeButton = document.createElement("button");
+  removeButton.textContent = "Remove";
+  removeButton.addEventListener("click", () => {
+    tokenDiv.remove();
   });
-  tokenElement.appendChild(removeButton);
+  tokenDiv.appendChild(removeButton);
 
-  const duplicateButton = document.createElement('button');
-  duplicateButton.textContent = 'Duplicate';
-  duplicateButton.addEventListener('click', () => {
-    const duplicateToken = createTokenElement(token);
-    gallery.appendChild(duplicateToken);
+  const duplicateButton = document.createElement("button");
+  duplicateButton.textContent = "Duplicate";
+  duplicateButton.addEventListener("click", () => {
+    addTokenToGallery(imageUrl);
   });
-  tokenElement.appendChild(duplicateButton);
+  tokenDiv.appendChild(duplicateButton);
 
-  const tapButton = document.createElement('button');
-  tapButton.textContent = 'Tap';
-  tapButton.addEventListener('click', () => {
-    tokenElement.classList.toggle('tapped');
+  const tapButton = document.createElement("button");
+  tapButton.textContent = "Tap";
+  tapButton.addEventListener("click", () => {
+    tokenDiv.classList.toggle("tapped");
   });
-  tokenElement.appendChild(tapButton);
+  tokenDiv.appendChild(tapButton);
 
-  const addCounterButton = document.createElement('button');
-  addCounterButton.textContent = 'Add Counter';
-  addCounterButton.addEventListener('click', () => {
-    const counter = document.createElement('div');
-    counter.classList.add('counter');
-    tokenElement.appendChild(counter);
-  });
-  tokenElement.appendChild(addCounterButton);
-
-  const removeCounterButton = document.createElement('button');
-  removeCounterButton.textContent = 'Remove Counter';
-  removeCounterButton.addEventListener('click', () => {
-    const counters = tokenElement.getElementsByClassName('counter');
-    if (counters.length > 0) {
-      counters[counters.length - 1].remove();
-    }
-  });
-  tokenElement.appendChild(removeCounterButton);
-
-  return tokenElement;
+  gallery.appendChild(tokenDiv);
 }
