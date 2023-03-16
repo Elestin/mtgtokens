@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MTG Token Search</title>
     <link rel="stylesheet" href="styles.css">
+    <title>MTG Token Search</title>
 </head>
 <body>
     <h1>MTG Token Search</h1>
-    <input type="text" id="search-input" placeholder="Search tokens...">
-    <div id="token-container"></div>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <input type="text" id="search-input" placeholder="Search for tokens...">
+    <div class="dropdown">
+        <ul id="search-results" class="dropdown-content"></ul>
+    </div>
     <script src="scripts.js"></script>
 </body>
 </html>
