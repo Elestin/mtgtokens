@@ -1,62 +1,31 @@
-const searchForm = document.getElementById("searchForm");
-const searchInput = document.getElementById("searchInput");
-const resultsList = document.getElementById("resultsList");
-const gallery = document.getElementById("gallery");
+$(document).ready(function () {
+    $("#search-input").on("input", function () {
+        const query = $(this).val();
 
-searchForm.addEventListener("submit", (event) => {
-  event.preventDefault();
-  searchTokens(searchInput.value);
+        if (query.length >= 3) {
+            searchTokens(query);
+        } else {
+            $("#token-container").empty();
+        }
+    });
 });
 
-async function searchTokens(query) {
-  const response = await fetch(`https://api.scryfall.com/cards/search?order=name&q=t%3Atoken+${query}`);
-  const data = await response.json();
-
-  displayResults(data.data);
+function searchTokens(query) {
+    $.getJSON(`https://api.scryfall.com/cards/search?q=t:token+${query}`, function (data) {
+        displayTokens(data.data);
+    });
 }
 
-function displayResults(tokens) {
-  resultsList.innerHTML = "";
-  tokens.slice(0, 10).forEach((token) => {
-    const option = document.createElement("option");
-    option.value = `${token.name} (${token.power}/${token.toughness})`;
-    option.dataset.imageUrl = token.image_uris.normal;
-    resultsList.appendChild(option);
-  });
-}
+function displayTokens(tokens) {
+    $("#token-container").empty();
 
-resultsList.addEventListener("change", (event) => {
-  addTokenToGallery(event.target.selectedOptions[0].dataset.imageUrl);
-});
+    tokens.forEach(function (token) {
+        const tokenItem = $("<div class='token-item'></div>");
+        const tokenImage = $("<img class='token-image' src='" + token.image_uris.small + "'>");
+        const tokenName = $("<p class='token-name'>" + token.name + "</p>");
 
-function addTokenToGallery(imageUrl) {
-  const tokenDiv = document.createElement("div");
-  tokenDiv.classList.add("token");
-
-  const tokenImage = document.createElement("img");
-  tokenImage.src = imageUrl;
-  tokenDiv.appendChild(tokenImage);
-
-  const removeButton = document.createElement("button");
-  removeButton.textContent = "Remove";
-  removeButton.addEventListener("click", () => {
-    tokenDiv.remove();
-  });
-  tokenDiv.appendChild(removeButton);
-
-  const duplicateButton = document.createElement("button");
-  duplicateButton.textContent = "Duplicate";
-  duplicateButton.addEventListener("click", () => {
-    addTokenToGallery(imageUrl);
-  });
-  tokenDiv.appendChild(duplicateButton);
-
-  const tapButton = document.createElement("button");
-  tapButton.textContent = "Tap";
-  tapButton.addEventListener("click", () => {
-    tokenDiv.classList.toggle("tapped");
-  });
-  tokenDiv.appendChild(tapButton);
-
-  gallery.appendChild(tokenDiv);
+        tokenItem.append(tokenImage);
+        tokenItem.append(tokenName);
+        $("#token-container").append(tokenItem);
+    });
 }
