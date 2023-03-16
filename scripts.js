@@ -41,11 +41,6 @@ function addToGallery(token) {
     const container = document.createElement("div");
     container.className = "token-container";
 
-    // Add the img element creation back inside addToGallery
-    const img = document.createElement("img");
-    img.src = token.image_uris.normal;
-    img.alt = `${token.name} (${token.power}/${token.toughness})`;
-
     // Create options button
     const optionsButton = document.createElement("button");
     optionsButton.textContent = "Options";
