@@ -98,4 +98,11 @@ input {
 .token-container img.tapped {
   transform: rotate(90deg);
 }
+.token-container button {
+  display: none;
+}
+
+.token-container:hover button {
+  display: block;
+}
 
