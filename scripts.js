@@ -12,12 +12,16 @@ searchForm.addEventListener("submit", (event) => {
 async function searchTokens(query) {
   const response = await fetch(`https://api.scryfall.com/cards/search?order=name&q=t%3Atoken+${query}`);
   const data = await response.json();
-
+  console.log(data);
   displayResults(data.data);
 }
 
 function displayResults(tokens) {
   resultsList.innerHTML = "";
+  if (tokens.length === 0) {
+    console.log("No results found");
+    return;
+  }
   tokens.slice(0, 10).forEach((token) => {
     const option = document.createElement("option");
     option.value = `${token.name} (${token.power}/${token.toughness})`;
