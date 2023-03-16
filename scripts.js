@@ -41,10 +41,13 @@ function addToGallery(token) {
     const container = document.createElement("div");
     container.className = "token-container";
 
+<<<<<<< HEAD
     const img = document.createElement("img");
     img.src = token.image_uris.normal;
     img.alt = `${token.name} (${token.power}/${token.toughness})`;
 
+=======
+>>>>>>> parent of 95c8598 (Revert "Revert "Update scripts.js"")
     // Create options button
     const optionsButton = document.createElement("button");
     optionsButton.textContent = "Options";
