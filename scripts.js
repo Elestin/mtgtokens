@@ -1,7 +1,7 @@
 const searchForm = document.getElementById("searchForm");
 const searchInput = document.getElementById("searchInput");
 const resultsList = document.getElementById("resultsList");
-const dropdown = document.querySelector(".dropdown");
+const dropdown = document.querySelector(".dropdown-content");
 const gallery = document.getElementById("gallery");
 
 searchForm.addEventListener("submit", (event) => {
@@ -24,12 +24,12 @@ function displayResults(tokens) {
     option.dataset.imageUrl = token.image_uris.normal;
     resultsList.appendChild(option);
   });
-  dropdown.classList.add("show");
+  dropdown.style.display = "block";
 }
 
 resultsList.addEventListener("change", (event) => {
   addTokenToGallery(event.target.selectedOptions[0].dataset.imageUrl);
-  dropdown.classList.remove("show");
+  dropdown.style.display = "none";
 });
 
 function addTokenToGallery(imageUrl) {
@@ -65,4 +65,6 @@ function addTokenToGallery(imageUrl) {
   tokenDiv.appendChild(tapButton);
 
   gallery.appendChild(tokenDiv);
+
+  dropdown.style.display = "none";
 }
