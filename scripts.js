@@ -35,6 +35,7 @@ function displayResults(tokens) {
 }
 
 resultsList.addEventListener("click", (event) => {
+  if (event.target.tagName.toLowerCase() !== 'li') return;
   addTokenToGallery(event.target.selectedOptions[0].dataset.imageUrl);
   dropdown.style.display = "none";
 });
