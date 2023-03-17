@@ -1,6 +1,11 @@
-const searchInput = document.getElementById('search-input');
-const searchResults = document.getElementById('search-results');
 const baseUrl = 'https://api.scryfall.com';
+
+// Declare dropdownContent here
+let dropdownContent;
+
+document.addEventListener("DOMContentLoaded", function () {
+    ...
+});
 
 // Declare dropdownContent here
 let dropdownContent;
