@@ -34,6 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 dropdownContent.style.display = "block";
             });
     });
+});
 
 function addToGallery(token) {
     dropdownContent.style.display = "none";
@@ -41,14 +42,31 @@ function addToGallery(token) {
     const container = document.createElement("div");
     container.className = "token-container";
 
-<<<<<<< HEAD
     const img = document.createElement("img");
     img.src = token.image_uris.normal;
     img.alt = `${token.name} (${token.power}/${token.toughness})`;
 
-=======
->>>>>>> parent of 95c8598 (Revert "Revert "Update scripts.js"")
-    // Create options button
+    const removeButton = document.createElement("button");
+    removeButton.textContent = "Remove";
+    removeButton.className = "remove-btn";
+    removeButton.addEventListener("click", function () {
+        gallery.removeChild(container);
+    });
+
+    const duplicateButton = document.createElement("button");
+    duplicateButton.textContent = "Duplicate";
+    duplicateButton.className = "duplicate-btn";
+    duplicateButton.addEventListener("click", function () {
+        addToGallery(token);
+    });
+
+    const tapButton = document.createElement("button");
+    tapButton.textContent = "Tap";
+    tapButton.className = "tap-btn";
+    tapButton.addEventListener("click", function () {
+        img.classList.toggle("tapped");
+    });
+
     const optionsButton = document.createElement("button");
     optionsButton.textContent = "Options";
     optionsButton.className = "options-btn";
@@ -57,37 +75,14 @@ function addToGallery(token) {
         toggleOptionsMenu(container);
     });
 
-    // Create options menu
-    const optionsMenu = document.createElement("div");
-    optionsMenu.className = "options-menu";
-    optionsMenu.style.display = "none";
-
-    // Add Keyword button
-    const addKeywordButton = document.createElement("button");
-    addKeywordButton.textContent = "Add Keyword";
-    addKeywordButton.className = "add-keyword-btn";
-    // Implement the functionality for adding keywords here
-
-    // Add Counter button
-    const addCounterButton = document.createElement("button");
-    addCounterButton.textContent = "Add Counter";
-    addCounterButton.className = "add-counter-btn";
-    // Implement the functionality for adding counters here
-
-    optionsMenu.appendChild(addKeywordButton);
-    optionsMenu.appendChild(addCounterButton);
-
-    // Toggle options menu on options button click
-    optionsButton.addEventListener("click", function () {
-        optionsMenu.style.display = optionsMenu.style.display === "none" ? "block" : "none";
-    });
-
     container.appendChild(img);
     container.appendChild(removeButton);
     container.appendChild(duplicateButton);
     container.appendChild(tapButton);
-    container.appendChild(optionsButton); // Append the options button
+    container.appendChild(optionsButton);
     gallery.appendChild(container);
 }
 
-});
+function toggleOptionsMenu(container) {
+    // Your implementation for toggling the options menu goes here
+}
