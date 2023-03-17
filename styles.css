@@ -99,3 +99,24 @@ input {
   transform: rotate(90deg);
 }
 
+.options-btn {
+    bottom: 4px;
+    left: 4px;
+}
+
+.options-menu {
+    display: none;
+    position: absolute;
+    bottom: 40px;
+    left: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 8px;
+    border-radius: 4px;
+    box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.1);
+}
+
+.options-menu button {
+    display: block;
+    margin-bottom: 4px;
+}
