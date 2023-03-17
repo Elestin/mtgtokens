@@ -1,5 +1,3 @@
-const searchInput = document.getElementById('search-input');
-const searchResults = document.getElementById('search-results');
 const baseUrl = 'https://api.scryfall.com';
 
 // Declare dropdownContent here
