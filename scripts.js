@@ -99,6 +99,11 @@ function addToGallery(token) {
     container.appendChild(duplicateButton);
     gallery.appendChild(container);
 }
+    function toggleSize() {
+        gallery.classList.toggle("small");
+}
 
+const toggleSizeButton = document.getElementById("toggle-size");
+toggleSizeButton.addEventListener("click", toggleSize);
 
 });
