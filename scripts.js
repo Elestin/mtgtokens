@@ -73,8 +73,25 @@ document.addEventListener("DOMContentLoaded", function () {
         container.appendChild(removeButton);
         container.appendChild(duplicateButton);
         container.appendChild(tapButton);
-        container.appendChild(optionsButton); // Add this line
-        container.appendChild(optionsMenu); // Add this line
+        container.appendChild(optionsButton);
+        container.appendChild(optionsMenu);
         gallery.appendChild(container);
+    }
+
+    function createOptionsButton() {
+        const optionsButton = document.createElement("button");
+        optionsButton.textContent = "Options";
+        optionsButton.className = "options-btn";
+        optionsButton.addEventListener("click", function (event) {
+            event.target.nextElementSibling.classList.toggle("show");
+        });
+        return optionsButton;
+    }
+
+    function createOptionsMenu() {
+        const optionsMenu = document.createElement("div");
+        optionsMenu.className = "options-menu";
+        optionsMenu.textContent = "This is a sample options menu.";
+        return optionsMenu;
     }
 });
