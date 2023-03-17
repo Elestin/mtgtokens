@@ -44,41 +44,36 @@ function addToGallery(token) {
     img.src = token.image_uris.normal;
     img.alt = `${token.name} (${token.power}/${token.toughness})`;
 
-    const optionsButton = document.createElement("button");
-    optionsButton.textContent = "Options";
-    optionsButton.className = "options-btn";
-    optionsButton.addEventListener("click", function () {
-        optionsMenu.style.display = optionsMenu.style.display === "block" ? "none" : "block";
-    });
-
-    const optionsMenu = document.createElement("div");
-    optionsMenu.className = "options-menu";
-
-    const tapButton = document.createElement("button");
-    tapButton.textContent = "Tap";
-    tapButton.addEventListener("click", function () {
-        img.classList.toggle("tapped");
-    });
-
-    const duplicateButton = document.createElement("button");
-    duplicateButton.textContent = "Duplicate";
-    duplicateButton.addEventListener("click", function () {
-        addToGallery(token);
-    });
-
     const removeButton = document.createElement("button");
     removeButton.textContent = "Remove";
+    removeButton.className = "remove-btn";
     removeButton.addEventListener("click", function () {
         gallery.removeChild(container);
     });
 
-    optionsMenu.appendChild(tapButton);
-    optionsMenu.appendChild(duplicateButton);
-    optionsMenu.appendChild(removeButton);
+    const duplicateButton = document.createElement("button");
+    duplicateButton.textContent = "Duplicate";
+    duplicateButton.className = "duplicate-btn";
+    duplicateButton.addEventListener("click", function () {
+        addToGallery(token);
+    });
+
+    const tapButton = document.createElement("button");
+    tapButton.textContent = "Tap";
+    tapButton.className = "tap-btn";
+    tapButton.addEventListener("click", function () {
+        img.classList.toggle("tapped");
+    });
+
+    const optionsButton = createOptionsButton();
+    const optionsMenu = createOptionsMenu();
 
     container.appendChild(img);
-    container.appendChild(optionsButton);
-    container.appendChild(optionsMenu);
+    container.appendChild(removeButton);
+    container.appendChild(duplicateButton);
+    container.appendChild(tapButton);
+    container.appendChild(optionsButton); // Add this line
+    container.appendChild(optionsMenu); // Add this line
     gallery.appendChild(container);
-}  
+}
 });
