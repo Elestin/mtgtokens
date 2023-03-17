@@ -34,46 +34,47 @@ document.addEventListener("DOMContentLoaded", function () {
                 dropdownContent.style.display = "block";
             });
     });
-function addToGallery(token) {
-    dropdownContent.style.display = "none";
 
-    const container = document.createElement("div");
-    container.className = "token-container";
+    function addToGallery(token) {
+        dropdownContent.style.display = "none";
 
-    const img = document.createElement("img");
-    img.src = token.image_uris.normal;
-    img.alt = `${token.name} (${token.power}/${token.toughness})`;
+        const container = document.createElement("div");
+        container.className = "token-container";
 
-    const removeButton = document.createElement("button");
-    removeButton.textContent = "Remove";
-    removeButton.className = "remove-btn";
-    removeButton.addEventListener("click", function () {
-        gallery.removeChild(container);
-    });
+        const img = document.createElement("img");
+        img.src = token.image_uris.normal;
+        img.alt = `${token.name} (${token.power}/${token.toughness})`;
 
-    const duplicateButton = document.createElement("button");
-    duplicateButton.textContent = "Duplicate";
-    duplicateButton.className = "duplicate-btn";
-    duplicateButton.addEventListener("click", function () {
-        addToGallery(token);
-    });
+        const removeButton = document.createElement("button");
+        removeButton.textContent = "Remove";
+        removeButton.className = "remove-btn";
+        removeButton.addEventListener("click", function () {
+            gallery.removeChild(container);
+        });
 
-    const tapButton = document.createElement("button");
-    tapButton.textContent = "Tap";
-    tapButton.className = "tap-btn";
-    tapButton.addEventListener("click", function () {
-        img.classList.toggle("tapped");
-    });
+        const duplicateButton = document.createElement("button");
+        duplicateButton.textContent = "Duplicate";
+        duplicateButton.className = "duplicate-btn";
+        duplicateButton.addEventListener("click", function () {
+            addToGallery(token);
+        });
 
-    const optionsButton = createOptionsButton();
-    const optionsMenu = createOptionsMenu();
+        const tapButton = document.createElement("button");
+        tapButton.textContent = "Tap";
+        tapButton.className = "tap-btn";
+        tapButton.addEventListener("click", function () {
+            img.classList.toggle("tapped");
+        });
 
-    container.appendChild(img);
-    container.appendChild(removeButton);
-    container.appendChild(duplicateButton);
-    container.appendChild(tapButton);
-    container.appendChild(optionsButton); // Add this line
-    container.appendChild(optionsMenu); // Add this line
-    gallery.appendChild(container);
-}
+        const optionsButton = createOptionsButton();
+        const optionsMenu = createOptionsMenu();
+
+        container.appendChild(img);
+        container.appendChild(removeButton);
+        container.appendChild(duplicateButton);
+        container.appendChild(tapButton);
+        container.appendChild(optionsButton); // Add this line
+        container.appendChild(optionsMenu); // Add this line
+        gallery.appendChild(container);
+    }
 });
