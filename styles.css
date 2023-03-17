@@ -71,14 +71,16 @@ input {
 }
 
 .token-container button {
-  position: absolute;
-  background-color: white;
-  border: none;
-  font-size: 12px;
-  padding: 4px 8px;
-  border-radius: 4px;
-  cursor: pointer;
+    position: absolute;
+    background-color: white;
+    border: none;
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    z-index: 1;
 }
+
 
 .token-container .remove-btn {
   top: 4px;
@@ -114,6 +116,7 @@ input {
     padding: 8px;
     border-radius: 4px;
     box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.1);
+    z-index: 2;
 }
 
 .options-menu button {
