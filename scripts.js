@@ -105,5 +105,14 @@ function addToGallery(token) {
 
 const toggleSizeButton = document.getElementById("toggle-size");
 toggleSizeButton.addEventListener("click", toggleSize);
+const toggleFullscreenButton = document.getElementById("toggle-fullscreen");
+
+toggleFullscreenButton.addEventListener("click", function () {
+  if (document.fullscreenElement) {
+    document.exitFullscreen();
+  } else {
+    document.documentElement.requestFullscreen();
+  }
+});
 
 });
