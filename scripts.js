@@ -39,6 +39,34 @@ document.addEventListener("DOMContentLoaded", function () {
                 dropdownContent.style.display = "block";
             });
     });
+    
+function createOptionsButton() {
+    const optionsButton = document.createElement("button");
+    optionsButton.textContent = "Options";
+    optionsButton.className = "options-btn";
+    optionsButton.addEventListener("click", function (event) {
+        event.stopPropagation();
+        const optionsMenu = event.target.nextSibling;
+        optionsMenu.style.display = optionsMenu.style.display === "block" ? "none" : "block";
+    });
+    return optionsButton;
+}
+
+function createOptionsMenu() {
+    const optionsMenu = document.createElement("div");
+    optionsMenu.className = "options-menu";
+    const flipButton = document.createElement("button");
+    flipButton.textContent = "Flip";
+    flipButton.addEventListener("click", function (event) {
+        event.stopPropagation();
+        const img = event.target.parentElement.parentElement.querySelector("img");
+        img.classList.toggle("flipped");
+        event.target.parentElement.style.display = "none";
+    });
+    optionsMenu.appendChild(flipButton);
+    return optionsMenu;
+}
+    
 function addToGallery(token) {
     dropdownContent.style.display = "none";
 
