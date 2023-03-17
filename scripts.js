@@ -98,8 +98,8 @@ document.addEventListener("DOMContentLoaded", function () {
         container.appendChild(removeButton);
         container.appendChild(duplicateButton);
         container.appendChild(tapButton);
-        container.appendChild(optionsButton);
-        container.appendChild(optionsMenu);
+        container.appendChild(optionsButton); // Add this line
+        container.appendChild(optionsMenu); // Add this line
         gallery.appendChild(container);
     }
 });
